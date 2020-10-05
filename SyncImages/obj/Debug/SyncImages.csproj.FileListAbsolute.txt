@@ -1,0 +1,12 @@
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\SyncImages.exe.config
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\SyncImages.exe
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\SyncImages.pdb
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\obj\Debug\SyncImages.csproj.CoreCompileInputs.cache
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\obj\Debug\SyncImages.exe
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\obj\Debug\SyncImages.pdb
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\obj\Debug\SyncImages.csprojAssemblyReference.cache
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\Newtonsoft.Json.dll
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\Newtonsoft.Json.xml
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\obj\Debug\SyncImages.csproj.CopyComplete
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\RestSharp.dll
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\RestSharp.xml
