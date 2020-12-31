@@ -10,3 +10,6 @@ C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\Newtonsoft.Json.
 C:\Development\SyncImagesDotNet\SyncImages\SyncImages\obj\Debug\SyncImages.csproj.CopyComplete
 C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\RestSharp.dll
 C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\RestSharp.xml
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\NLog.config
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\NLog.dll
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\NLog.xml

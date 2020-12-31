@@ -20,6 +20,7 @@ namespace SyncImages
             }
             else
             {
+                p.PreProcessImages().Wait();
                 p.ProcessFilesImages(ConfigurationManager.AppSettings["ImageFolder"], ConfigurationManager.AppSettings["LinuxImagesFolder"], false).Wait();
                 //p.ProcessFilesImages(ConfigurationManager.AppSettings["BannerFolder"], "img", false).Wait();
                 p.ProcessFilesImages(ConfigurationManager.AppSettings["ThumbFolder"], ConfigurationManager.AppSettings["LinuxThumbsFolder"], true).Wait();
