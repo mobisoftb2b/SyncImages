@@ -13,3 +13,5 @@ C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\RestSharp.xml
 C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\NLog.config
 C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\NLog.dll
 C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\NLog.xml
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\System.Data.Common.dll
+C:\Development\SyncImagesDotNet\SyncImages\SyncImages\bin\Debug\System.Data.SqlClient.dll

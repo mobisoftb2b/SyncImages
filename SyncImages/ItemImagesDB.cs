@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
 
 namespace SyncImages
 {
@@ -22,31 +23,68 @@ namespace SyncImages
     }
     public class ItemImagesDB
     {
-        async public Task<List<ItemImage>> GetItemsImages(bool isThumb) {
-            string connectionString = ConfigurationManager.ConnectionStrings["B2BConnectionString"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["B2BConnectionString"].ConnectionString;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
-            var itemImageList = new List<ItemImage>();
-            using (var conn = new SqlConnection(connectionString))
-            using (var command = new SqlCommand("sp_B2B_GetItemsImages", conn)
+        public List<ItemImage> GetItemsImages(bool isThumb) {
+
+            try
             {
-                CommandType = CommandType.StoredProcedure
-                
-            })
-            {
-                command.Parameters.Add(new SqlParameter("@isthumb", isThumb));
-                conn.Open();
-                var reader = await command.ExecuteReaderAsync();
-                // iterate through results, printing each to console
-                while (reader.Read())
+                var itemImageList = new List<ItemImage>();
+                using (var conn = new SqlConnection(connectionString))
+                using (var command = new SqlCommand("sp_B2B_GetItemsImages", conn)
                 {
-                    var itemImage = new ItemImage((String)reader["ItemCode"], (String)reader["Image"], (DateTime)reader["Date"]);
-                    itemImageList.Add(itemImage);
-                    //Console.WriteLine((String)reader["ItemCode"] + ' ' + (String)reader["Image"] + ' ' + ((DateTime)reader["Date"]).ToLongDateString());
-                }
-                conn.Close();
-            }
+                    CommandType = CommandType.StoredProcedure
 
-            return itemImageList;
+                })
+                {
+                    command.Parameters.Add(new SqlParameter("@isthumb", isThumb));
+                    conn.Open();
+                    var reader = command.ExecuteReader();
+                    // iterate through results, printing each to console
+                    while (reader.Read())
+                    {
+                        var itemImage = new ItemImage((String)reader["ItemCode"], (String)reader["Image"], (DateTime)reader["Date"]);
+                        itemImageList.Add(itemImage);
+                        //Console.WriteLine((String)reader["ItemCode"] + ' ' + (String)reader["Image"] + ' ' + ((DateTime)reader["Date"]).ToLongDateString());
+                    }
+                    conn.Close();
+                }
+
+                return itemImageList;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+            }
+            return null;
+        }
+
+        public int UpdateItemsLog (int Type)
+        {
+            try
+            {
+                int result = -1;
+                using (var conn = new SqlConnection(connectionString))
+                using (var command = new SqlCommand("sp_B2B_UpdateItemsImages_Log", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+
+                })
+                {
+                    command.Parameters.Add(new SqlParameter("@Type", Type));
+
+                    conn.Open();
+                    result = command.ExecuteNonQuery();
+                    conn.Close();
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+            }
+            return -1;
         }
     }
 }
