@@ -204,8 +204,8 @@ namespace SyncImages
 
                     string[] fileEntries = Directory.GetFiles(targetDirectory);
                     List<String> fileList = fileEntries.OrderBy(file => file).ToList();
-                    logger.Info("files count dirty" + fileEntries.Length);
-                    Console.WriteLine("files count dirty" + fileEntries.Length);
+                    logger.Info("files count dirty 888" + fileEntries.Length);
+                    Console.WriteLine("files count dirty888" + fileEntries.Length);
                     //delete all files which cannot work on linux
                     //linux does not like spaces in names
                     //do not copy gibberish names and (1), (2) images copies
@@ -213,8 +213,15 @@ namespace SyncImages
                     List<ImagesDBType> imageNamesFromDB = null;
                     if (useExactNames == "true")
                     {
+                        logger.Info("use exact names");
                         imageNamesFromDB = db.GetImagesNames();
+                        logger.Info("images count from DB " + imageNamesFromDB.Count.ToString());
+                        foreach (ImagesDBType img in imageNamesFromDB) {
+                            logger.Info(img.ItemImageMap);
+                        }
                     }
+                    Console.WriteLine("after exact names");
+                    logger.Info("after exact names");
 
                     bool toDelete = false;
                     foreach (string fileName in fileList) {
@@ -235,7 +242,14 @@ namespace SyncImages
                             {
                                 if (isthumb)
                                 {
-                                    if (!imageNamesFromDB.Exists(f => f.ItemThumbMap == fileNameNoExt))
+                                    /*
+                                    bool exists = imageNamesFromDB.Where(f => f.ItemThumbMap.Trim() == fileNameNoPath.Trim()).Count() > 0;
+                                    if (exists)
+                                        Console.WriteLine($"file {fileNameNoPath} Exists!!!!");
+                                    else
+                                        Console.WriteLine($"file not {fileNameNoPath} Exists!!!!");
+                                    */
+                                    if (!imageNamesFromDB.Exists(f => f.ItemThumbMap.Trim() == fileNameNoPath.Trim()))
                                     {
                                         Console.WriteLine($"file {fileNameNoPath} will be deleted because it is not in B2B_Items");
                                         logger.Info($"file {fileNameNoPath} will be deleted because it is not in B2B_Items");
@@ -243,12 +257,19 @@ namespace SyncImages
                                     }
                                 }
                                 else {
-                                    if (!imageNamesFromDB.Exists(f => f.ItemImageMap == fileNameNoExt))
+                                    /*bool exists = imageNamesFromDB.Where(f => f.ItemImageMap.Trim() == fileNameNoPath.Trim()).Count() > 0;
+                                    if (exists)
+                                        Console.WriteLine($"file {fileNameNoPath} Exists!!!!");
+                                    else
+                                        Console.WriteLine($"file {fileNameNoPath} not Exists!!!!");
+                                    */
+                                    if (!imageNamesFromDB.Exists(f => f.ItemImageMap.Trim() == fileNameNoPath.Trim()))
                                     {
                                         Console.WriteLine($"file {fileNameNoPath} will be deleted because it is not in B2B_Items");
                                         logger.Info($"file {fileNameNoPath} will be deleted because it is not in B2B_Items");
                                         toDelete = true;
                                     }
+                                    
                                 }
                             }
                         }
